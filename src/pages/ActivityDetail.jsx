@@ -4,10 +4,10 @@ import useFetch from "../hooks/useFetch";
 import useTimer from "../hooks/useTimer";
 import PropTypes from "prop-types";
 
-const ActivityDetail = () => {
+const ActivityDetail = ({urlAPI}) => {
   const { id } = useParams();
   const navigate = useNavigate();
-  const [data, loading, error] = useFetch(`http://localhost:3000/activities/${id}`);
+  const [data, loading, error] = useFetch(`${urlAPI}/${id}`);
   const { formattedTime, startTimer, stopTimer, resetTimer } = useTimer();
 
   if (loading) {
@@ -83,5 +83,13 @@ const ActivityDetail = () => {
     </div>
   );
 };
+
+ActivityDetail.propTypes = {
+  data: PropTypes.shape({
+    title: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired
+  }),
+  urlAPI: PropTypes.string.isRequired
+}
 
 export default ActivityDetail;

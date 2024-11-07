@@ -2,11 +2,11 @@ import React, { useState } from "react";
 import ActivityForm from "../components/ActivityForm";
 import ActivityList from "../components/ActivityList";
 import useFetch from "../hooks/useFetch";
+import PropTypes from "prop-types";
 
-const Home = () => {
+const Home = ({urlAPI}) => {
   const [showModal, setShowModal] = useState(false);
-  
-  const urlAPI = "http://localhost:3000/activities";
+
   const [activities, loading, error, refetchData] = useFetch(urlAPI);
 
   if (error) {
@@ -44,6 +44,10 @@ const Home = () => {
       />
     </div>
   );
+};
+
+Home.propTypes = {
+  urlAPI: PropTypes.string.isRequired
 };
 
 export default Home;

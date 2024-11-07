@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Modal, Button } from "react-bootstrap";
 import Swal from "sweetalert2";
 import usePost from "../hooks/usePost";
+import PropTypes from "prop-types";
 
 const ActivityForm = ({ showModal, setShowModal, refetch, urlAPI }) => {
   const [title, setTitle] = useState("");
@@ -87,6 +88,13 @@ const ActivityForm = ({ showModal, setShowModal, refetch, urlAPI }) => {
       </Modal.Body>
     </Modal>
   );
+};
+
+ActivityForm.propTypes = {
+  showModal: PropTypes.bool.isRequired,
+  setShowModal: PropTypes.func.isRequired,
+  refetch: PropTypes.func.isRequired,
+  urlAPI: PropTypes.string.isRequired
 };
 
 export default ActivityForm;
